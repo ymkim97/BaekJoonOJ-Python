@@ -1,16 +1,17 @@
 import sys
+from collections import deque
 
 n, k = map(int, sys.stdin.readline().split())
 
-ans = []
+ans = deque([])
 count = 0
 
 class queueMgmt:
     def __init__(self, num = 0):
-        self.queue = [i for i in range(1, num + 1)]
+        self.queue = deque([i for i in range(1, num + 1)])
 
     def dequeue(self):
-        return self.queue.pop(0)
+        return self.queue.popleft()
 
     def enqueue(self, data):
         self.queue.append(data)
@@ -18,17 +19,16 @@ class queueMgmt:
     def size(self):
         return len(self.queue)
 
+    def rotate(self, data):
+        self.queue.rotate(data)
+
 q = queueMgmt(n)
 
 while q.size() > 0:
 
-    count += 1
-    if count == k:
-        count = 0
-        ans.append(q.dequeue())
-        continue
-
-    q.enqueue(q.dequeue())
+    q.rotate(-k + 1)
+    
+    ans.append(q.dequeue())
 
 
 print('<', end = '')
@@ -40,4 +40,4 @@ for i in ans:
 
 print('>')
 
-#시간초과 해결해야함
+#시간초과 해결됨
