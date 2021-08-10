@@ -27,7 +27,7 @@ for _ in range(command_number):
 while len(Rightstack) != 0:
     Leftstack.append(Rightstack.pop())        
 
-print("".join(Leftstack))
+print("".join(Leftstack))   
 
 """ 시간 Over 2ms
 import sys
