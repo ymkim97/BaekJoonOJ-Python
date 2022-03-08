@@ -1,6 +1,3 @@
-from typing import List
-
-
 a = []
 
 while True:
